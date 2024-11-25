@@ -22,6 +22,34 @@
     </header>
     <main>
         <H1>Geld anlegen</H1>
+        <p>geben sie hier ihren wunschbetrag an, um auszurechnen, wie viele zinsen sie nach der gewünchten laufzeit bekommen</p>
+        <!---->
+        <form>
+            <label for="betrag">Gewünschter Betrag in Euro:</label><br>
+            <input type="number" id="betrag" name="betrag" required min="1" step="0.01" placeholder="z.B. 10000"><br><br>
+        
+            <!-- Laufzeit -->
+            <label for="laufzeit">Gewünschte Laufzeit in Jahren:</label><br>
+            <input type="number" id="laufzeit" name="laufzeit" required min="1" placeholder="z.B. 5"><br><br>
+        
+            <!-- Zinssatz -->
+            <label for="zinssatz">Zinssatz (% pro Jahr):</label><br>
+            <input type="number" id="zinssatz" name="zinssatz" required min="0" step="0.01" placeholder="z.B. 3.5"><br><br>
+        
+            <!-- Auswahl der Zahlungsfrequenz -->
+            <label for="zahlungsfrequenz">Zahlungsfrequenz:</label><br>
+            <select id="zahlungsfrequenz" name="zahlungsfrequenz">
+              <option value="monatlich">Monatlich</option>
+              <option value="vierteljaehrlich">Vierteljährlich</option>
+              <option value="halbjaehrlich">Halbjährlich</option>
+              <option value="jaehrlich">Jährlich</option>
+            </select><br><br>
+            <!-- Berechnungsbutton -->
+    <button type="button" onclick="berechneRate()">Berechnen</button><br><br>
+
+    <!-- Anzeige der monatlichen Rate -->
+    <p id="monatsRate"></p>
+         </form>
     </main>
 
     <footer>

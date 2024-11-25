@@ -49,3 +49,14 @@ eine Class wird in der styles.css immer mit einem führenden Punkt dargestellt.*
     line-height: 75px;
     font-size: 30px;
   }
+
+  button {
+    width: 100%;
+    padding: 12px;
+    background-color: #4CAF50; /* Grüne Farbe */
+    color: white;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
