@@ -1,61 +1,96 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--Die Styles.css muss aus allen HTML-Dateien verlinkt werden-->
     <link rel="stylesheet" href="styles.css">
-    <!--Es gibt im Internet Dienste, die Styles zur Verfügung stellen. Beispiel: font awesome-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <title>Borken-Bank - Geld anlegen</title>
 </head>
 <body>
     <header>
-        <i class="fa-solid fa-piggy-bank"></i>
+        <i class="fa-solid fa-piggy-bank" aria-hidden="true"></i>
         <hr>
-        <a href="/"><i class="fa-solid fa-home"></i></a> 
-        <a href="hilfe"><i class="fa-solid fa-phone"></i> Hilfe</a> 
-        <a href="postfach"><i class="fa-solid fa-envelope"></i> Postfach</a>
-        <a href="profil"><i class="fa-solid fa-user"></i> Profil</a>
-        <a href="agb"><i class="fa-solid fa-file-lines"></i> AGB</a>
-        <a href="login"><i class="fa fa-sign-out"></i> Abmelden</a>
+        <nav>
+            <a href="/" aria-label="Zur Startseite"><i class="fa-solid fa-home" aria-hidden="true"></i></a> 
+            <a href="hilfe" aria-label="Hilfe kontaktieren"><i class="fa-solid fa-phone" aria-hidden="true"></i> Hilfe</a> 
+            <a href="postfach" aria-label="Postfach anzeigen"><i class="fa-solid fa-envelope" aria-hidden="true"></i> Postfach</a>
+            <a href="profil" aria-label="Zum Profil"><i class="fa-solid fa-user" aria-hidden="true"></i> Profil</a>
+            <a href="agb" aria-label="Allgemeine Geschäftsbedingungen"><i class="fa-solid fa-file-lines" aria-hidden="true"></i> AGB</a>
+            <a href="login" aria-label="Abmelden"><i class="fa fa-sign-out" aria-hidden="true"></i> Abmelden</a>
+        </nav>
     </header>
     <main>
-        <H1>Geld anlegen</H1>
-        <p>geben sie hier ihren wunschbetrag an, um auszurechnen, wie viele zinsen sie nach der gewünchten laufzeit bekommen</p>
-        <!---->
-        <form>
-            <label for="betrag">Gewünschter Betrag in Euro:</label><br>
-            <input type="number" id="betrag" name="betrag" required min="1" step="0.01" placeholder="z.B. 10000"><br><br>
+        <h1>Geld anlegen</h1>
+        <p>Geben Sie hier Ihren Wunschbetrag an, um auszurechnen, wie viele Zinsen Sie nach der gewählten Laufzeit erhalten.</p>
         
-            <!-- Laufzeit -->
-            <label for="laufzeit">Gewünschte Laufzeit in Jahren:</label><br>
-            <input type="number" id="laufzeit" name="laufzeit" required min="1" placeholder="z.B. 5"><br><br>
-        
-            <!-- Zinssatz -->
-            <label for="zinssatz">Zinssatz (% pro Jahr):</label><br>
-            <input type="number" id="zinssatz" name="zinssatz" required min="0" step="0.01" placeholder="z.B. 3.5"><br><br>
-        
-            <!-- Auswahl der Zahlungsfrequenz -->
-            <label for="zahlungsfrequenz">Zahlungsfrequenz:</label><br>
-            <select id="zahlungsfrequenz" name="zahlungsfrequenz">
-              <option value="monatlich">Monatlich</option>
-              <option value="vierteljaehrlich">Vierteljährlich</option>
-              <option value="halbjaehrlich">Halbjährlich</option>
-              <option value="jaehrlich">Jährlich</option>
-            </select><br><br>
-            <!-- Berechnungsbutton -->
-    <button type="button" onclick="berechneRate()">Berechnen</button><br><br>
-
-    <!-- Anzeige der monatlichen Rate -->
-    <p id="monatsRate"></p>
-         </form>
+        <form id="anlageForm">
+            <fieldset>
+                <legend>Berechnung der Zinsen</legend>
+                <label for="betrag">Gewünschter Betrag in Euro:</label><br>
+                <input type="number" id="betrag" name="betrag" required min="1" step="0.01" placeholder="z.B. 10000" aria-describedby="betragHelp">
+                <small id="betragHelp">Geben Sie den Betrag ein, den Sie anlegen möchten.</small><br><br>
+            
+                <label for="laufzeit">Gewünschte Laufzeit in Jahren:</label><br>
+                <input type="number" id="laufzeit" name="laufzeit" required min="1" placeholder="z.B. 5" aria-describedby="laufzeitHelp">
+                <small id="laufzeitHelp">Geben Sie die Laufzeit der Anlage an (in Jahren).</small><br><br>
+            
+                <label for="zinssatz">Zinssatz (% pro Jahr):</label><br>
+                <input type="number" id="zinssatz" name="zinssatz" required min="0" step="0.01" placeholder="z.B. 3.5" aria-describedby="zinssatzHelp">
+                <small id="zinssatzHelp">Geben Sie den jährlichen Zinssatz an (in Prozent).</small><br><br>
+            
+                <label for="zahlungsfrequenz">Zahlungsfrequenz:</label><br>
+                <select id="zahlungsfrequenz" name="zahlungsfrequenz">
+                    <option value="monatlich">Monatlich</option>
+                    <option value="vierteljaehrlich">Vierteljährlich</option>
+                    <option value="halbjaehrlich">Halbjährlich</option>
+                    <option value="jaehrlich">Jährlich</option>
+                </select><br><br>
+            
+                <button type="button" onclick="berechneRate()" id="berechneButton">Berechnen</button><br><br>
+            </fieldset>
+            <p id="monatsRate"></p>
+        </form>
     </main>
 
     <footer>
         <p>Borken-Bank AG</p>
         <p>Geschäftsführer: Hans Dampf, IBAN: DE 55 28 000 000</p>
-        <a href="https://www.borken-bank.de">Zur Homepage</a> 
+        <a href="https://www.borken-bank.de">Zur Homepage</a>
     </footer>
+
+    <script>
+        function berechneRate() {
+            var betrag = parseFloat(document.getElementById('betrag').value);
+            var laufzeit = parseFloat(document.getElementById('laufzeit').value);
+            var zinssatz = parseFloat(document.getElementById('zinssatz').value) / 100;
+            var zahlungsfrequenz = document.getElementById('zahlungsfrequenz').value;
+
+            if (isNaN(betrag) || isNaN(laufzeit) || isNaN(zinssatz)) {
+                alert("Bitte stellen Sie sicher, dass alle Felder korrekt ausgefüllt sind.");
+                return;
+            }
+
+            var zinsenProJahr = betrag * zinssatz;
+            var jahresRate = zinsenProJahr * laufzeit;
+            var monatsRate = jahresRate / 12;
+
+            // Anpassung je nach Zahlungsfrequenz
+            switch (zahlungsfrequenz) {
+                case 'monatlich':
+                    document.getElementById('monatsRate').textContent = "Monatliche Rate: " + monatsRate.toFixed(2) + " Euro";
+                    break;
+                case 'vierteljaehrlich':
+                    document.getElementById('monatsRate').textContent = "Vierteljährliche Rate: " + (jahresRate / 4).toFixed(2) + " Euro";
+                    break;
+                case 'halbjaehrlich':
+                    document.getElementById('monatsRate').textContent = "Halbjährliche Rate: " + (jahresRate / 2).toFixed(2) + " Euro";
+                    break;
+                case 'jaehrlich':
+                    document.getElementById('monatsRate').textContent = "Jährliche Rate: " + jahresRate.toFixed(2) + " Euro";
+                    break;
+            }
+        }
+    </script>
 </body>
 </html>

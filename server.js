@@ -7,6 +7,8 @@
 
 const express = require('express');
 
+
+
 // Die Anweisungen werden von oben nach unten abgearbeitet. Der Wert 3000 wird von rechts nach links 
 // zugewiesen an die Konstante namens PORT. Das einfache Gleichheitszeichen lässt sich also übersetzen
 // mit "... wird zugewiesen an ..."
@@ -19,11 +21,21 @@ const HOST = '0.0.0.0';
 
 const app = express();
 
+//app.use....
+//app.set....
+
+
+
+
+const bodyparser = ('body-reparser');
+
+//app.use....
+
 // Es wird der App bekanntgegeben, wo die styles zu finden sind.
 app.use(express.static('public'))
 
 
-
+//geht so lange durch wie der punkt an der seite neben den zahlen angezeigt wird wenn man mit den mauszeiger drübergeht
 app.get('/', (req, res) => {
 
 	// res ist die Antwort des Servers an den Browser.
@@ -75,9 +87,15 @@ app.get('/geldAnlegen', (req, res) => {
 	res.render('geldAnlegen.ejs',{});
 });
 
+
+//res => render => serverantwort auf den browser
+// in der geldanlegen.ejs kann man einen beispieltbetrag und laufzeit hier mit einbauen
+// der server übergibt die information und macht sie nicht fest sondern immer veränderbar 
 app.get('/login', (req, res) => {
 	res.render('login.ejs',{});
 });
+
+
 
 
 
